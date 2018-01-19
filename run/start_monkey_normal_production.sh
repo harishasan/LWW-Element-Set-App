@@ -1,12 +1,18 @@
 #!/bin/bash -x
 
+SERVER_ADDRESS=http://localhost:8000
+FOREVER_PATH=/home/ec2-user/.nvm/versions/node/v9.4.0/bin/forever
+PROJECT_DIR=/home/ec2-user/LWW-Element-Set-App
+PROJECT_NAME=normal_monkey
+NORMAL_MONKEY_MAX_DELAY_SECONDS=5
+
 echo "Initiating normal monkey deployment ..."
 
 echo "Stopping current deployment"
-/usr/bin/forever stop normal_monkey
+$FOREVER_PATH stop $PROJECT_NAME
 
 echo "Go to project directory"
-cd /home/ec2-user/LWW-Element-Set-App
+cd $PROJECT_DIR
 
 echo "Pull latest code ..."
 git pull origin master
@@ -14,11 +20,9 @@ git pull origin master
 echo "Install dependencies ..."
 pip install -r requirements.txt
 
-echo "Set environment variables..."
-export SERVER_ADDRESS=http://localhost:8000
-export NORMAL_MONKEY_MAX_DELAY_SECONDS=5
-
 echo "Starting normal monkey..."
-/home/ec2-user/.nvm/versions/node/v9.4.0/bin/forever start --uid "normal_monkey" --append -c "python ./monkeys/normal.py" .
+NORMAL_MONKEY_MAX_DELAY_SECONDS=$NORMAL_MONKEY_MAX_DELAY_SECONDS \
+    SERVER_ADDRESS=$SERVER_ADDRESS $FOREVER_PATH start \
+    --uid $PROJECT_NAME --append -c "python $PROJECT_DIR/monkeys/normal.py" .
 
 echo "Deployment complete"

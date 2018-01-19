@@ -1,12 +1,18 @@
 #!/bin/bash -x
 
-echo "Initiating offline to online monkey deployment ..."
+SERVER_ADDRESS=http://localhost:8000
+FOREVER_PATH=/home/ec2-user/.nvm/versions/node/v9.4.0/bin/forever
+PROJECT_DIR=/home/ec2-user/LWW-Element-Set-App
+PROJECT_NAME=offline_to_online
+OFFLINE_TO_ONLINE_MONKEY_MAX_DELAY_SECONDS=5
+
+echo "Initiating normal monkey deployment ..."
 
 echo "Stopping current deployment"
-/usr/bin/forever stop offline_to_online
+$FOREVER_PATH stop $PROJECT_NAME
 
 echo "Go to project directory"
-cd /home/ec2-user/LWW-Element-Set-App
+cd $PROJECT_DIR
 
 echo "Pull latest code ..."
 git pull origin master
@@ -19,6 +25,8 @@ export SERVER_ADDRESS=http://localhost:8000
 export OFFLINE_TO_ONLINE_MONKEY_MAX_DELAY_SECONDS=5
 
 echo "Starting normal monkey..."
-/home/ec2-user/.nvm/versions/node/v9.4.0/bin/forever start --uid "offline_to_online" --append -c "python ./monkeys/offline_to_online.py" .
+OFFLINE_TO_ONLINE_MONKEY_MAX_DELAY_SECONDS=$OFFLINE_TO_ONLINE_MONKEY_MAX_DELAY_SECONDS \
+    SERVER_ADDRESS=$SERVER_ADDRESS $FOREVER_PATH start --uid $PROJECT_NAME --append -c \
+    "python $PROJECT_DIR/monkeys/offline_to_online.py" .
 
 echo "Deployment complete"
