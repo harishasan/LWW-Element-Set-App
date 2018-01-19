@@ -17,7 +17,7 @@ def run_server():
     starts the server
     """
     print('starting server...')
-    APP.run(host='0.0.0.0', port=os.environ['PORT'], threaded=True)
+    APP.run(host='0.0.0.0', port=int(os.environ['PORT']), threaded=True)
 
 
 @APP.errorhandler(404)
