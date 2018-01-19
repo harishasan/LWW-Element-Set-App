@@ -1,3 +1,5 @@
+# just a small script for convenience
+
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 FOREVER_PATH=/home/ec2-user/.nvm/versions/node/v9.4.0/bin/forever
 
