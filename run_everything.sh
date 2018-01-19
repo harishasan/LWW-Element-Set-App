@@ -13,7 +13,11 @@ else
 
     $FOREVER_PATH stopall
     sh $DIR/run/start_server_production.sh &
+    sleep 5
     sh $DIR/run/start_monkey_normal_production.sh &
+    sleep 5
     sh $DIR/run/start_monkey_offline_to_online_production.sh &
+    sleep 5
     sh $DIR/run/start_monkey_client_viewer_production.sh &
+    sleep 5
 fi
