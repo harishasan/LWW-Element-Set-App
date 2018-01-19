@@ -19,6 +19,6 @@ export SERVER_ADDRESS=http://localhost:8000
 export NORMAL_MONKEY_MAX_DELAY_SECONDS=5
 
 echo "Starting normal monkey..."
-/usr/bin/forever start --uid "normal_monkey" --append -c "python ./monkeys/normal.py" .
+/home/ec2-user/.nvm/versions/node/v9.4.0/bin/forever start --uid "normal_monkey" --append -c "python ./monkeys/normal.py" .
 
 echo "Deployment complete"

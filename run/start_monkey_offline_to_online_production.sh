@@ -19,6 +19,6 @@ export SERVER_ADDRESS=http://localhost:8000
 export OFFLINE_TO_ONLINE_MONKEY_MAX_DELAY_SECONDS=5
 
 echo "Starting normal monkey..."
-/usr/bin/forever start --uid "offline_to_online" --append -c "python ./monkeys/offline_to_online.py" .
+/home/ec2-user/.nvm/versions/node/v9.4.0/bin/forever start --uid "offline_to_online" --append -c "python ./monkeys/offline_to_online.py" .
 
 echo "Deployment complete"

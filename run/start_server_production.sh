@@ -20,6 +20,6 @@ export PORT=8000
 export PERSISTENCE_PATH=/home/ec2-user/goodnotes.db
 
 echo "Starting python server ..."
-/usr/bin/forever start --uid "master" --append -c "python ./../server/index.py" .
+/home/ec2-user/.nvm/versions/node/v9.4.0/bin/forever start --uid "master" --append -c "python ./../server/index.py" .
 
 echo "Deployment complete"

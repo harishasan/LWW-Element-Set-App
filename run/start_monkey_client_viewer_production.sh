@@ -18,6 +18,6 @@ echo "Set environment variables..."
 export SERVER_ADDRESS=http://localhost:8000
 
 echo "Starting normal monkey..."
-/usr/bin/forever start --uid "client_viewer" --append -c "python ./monkeys/client_viewer.py" .
+/home/ec2-user/.nvm/versions/node/v9.4.0/bin/forever start --uid "client_viewer" --append -c "python ./monkeys/client_viewer.py" .
 
 echo "Deployment complete"
