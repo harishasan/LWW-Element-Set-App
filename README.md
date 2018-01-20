@@ -1,5 +1,6 @@
 
 
+
 Problem statement can be found [here](https://hackmd.io/s/HJkrqjkMG#part-1-lww-element-set-server).
 
 *Notes*
@@ -38,6 +39,8 @@ In short, follow these steps to run the code in **local environment**:
  3. Go to project root directory
  4. Run command `pip install requirements.txt`
  5. Run command `sh run_everything.sh`
+
+[This video](https://dl.dropboxusercontent.com/content_link/jyXJoB5DuA8ybFnAJozbh9TW1CdYUjvdjGmXFpU9yOfzecPmBdvDidGVElyqL3Tr/file) shows the output of running `run_everything` script locally.
 
 **For production**:
  1. Set an environment variable `IS_PRODUCTION` to True
