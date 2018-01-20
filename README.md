@@ -33,8 +33,8 @@ Code is developed in python 2.7. [Requirements.txt](https://github.com/harishasa
 ### Deployment
 Code is deployed on a single AWS [EC2 instance](http://34.226.152.221/). Please note that server is not serving any html pages so hitting the IP should return a JSON error. Production deployment is using [forever](https://github.com/foreverjs/forever) to automatically restart modules in case of any unexpected problem. All the configurations are passed through environment variables.
 
-### Scale: 10M Concurrent Monkeys
-![System Architecture](https://www.dropbox.com/s/3mdl77iq5509ifr/Screen%20Shot%202018-01-20%20at%2011.34.26%20AM.png?raw=1)
+### Scale: 1M Concurrent Monkeys
+![System Architecture](https://www.dropbox.com/s/brigfgu4hdkrf6g/Screen%20Shot%202018-01-20%20at%201.36.09%20AM.png?raw=1)
 Key elements in this design:
  - Using Node servers at API layer because event loop based approach in this scenario can scale better as compared to one thread/request based servers.
  - REST API layer is elastic, nodes are stateless and can be added or removed as needed.
@@ -47,7 +47,7 @@ Key elements in this design:
 As always, benchmarking is the only way to ensure that any proposed architecture can actually handle the required load.
 ### 100K Documents, 1-10 Monkeys
 Another interesting and more realistic problem to solve would be to have 100K documents in our data store where each document is being edited by 1-10 monkeys simultaneously in a collaborative fashion. The architecture proposed below addresses this scenario.
-![System architecture](https://www.dropbox.com/s/qsaija79u8l8vhr/Screen%20Shot%202018-01-20%20at%2010.57.21%20AM.png?raw=1)
+![System architecture](https://www.dropbox.com/s/3mdl77iq5509ifr/Screen%20Shot%202018-01-20%20at%2011.34.26%20AM.png?raw=1)
 Few points about this design:
  - Using a RDBMS here because the data can be naturally modeled as relational due to entities like users, documents, document_shares, document_versions and document_edits. Additionally, querying can be efficiently done by indexing key entities like user_id and document_id.
  - "Write Magic" is the module responsible for merging edits from multiple collaborators in real time. The core idea, as described in the image, is that the server maintains a complete document with every change updating the document version. Each client starts by pulling latest version from server, hence knows the version it is currently on. With every change, client sends the current version it has and the new change(s). Using this information server updates the document, which might have received changes from other collaborators as well, and it's version and sends the change(s) to all active collaborators. [This is still a high level design, merge logic needs more thorough thinking to ensure scenarios like offline to online clients, conflicting merges, etc are handled correctly].
