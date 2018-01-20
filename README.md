@@ -34,7 +34,7 @@ Code is developed in python 2.7. [Requirements.txt](https://github.com/harishasa
 Code is deployed on a single AWS [EC2 instance](http://34.226.152.221/). Please note that server is not serving any html pages so hitting the IP should return a JSON error. Production deployment is using [forever](https://github.com/foreverjs/forever) to automatically restart modules in case of any unexpected problem. All the configurations are passed through environment variables.
 
 ### Scale: 10M Concurrent Monkeys
-![System Architecture](https://www.dropbox.com/s/brigfgu4hdkrf6g/Screen%20Shot%202018-01-20%20at%201.36.09%20AM.png?raw=1)
+![System Architecture](https://www.dropbox.com/s/3mdl77iq5509ifr/Screen%20Shot%202018-01-20%20at%2011.34.26%20AM.png?raw=1)
 Key elements in this design:
  - Using Node servers at API layer because event loop based approach in this scenario can scale better as compared to one thread/request based servers.
  - REST API layer is elastic, nodes are stateless and can be added or removed as needed.
