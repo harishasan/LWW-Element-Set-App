@@ -1,3 +1,7 @@
+#!/bin/bash -x
+# this script runs the server app in development environment
+
 export PORT=8000
-export PERSISTENCE_PATH=/Users/haris/Desktop/goodnotes.db
-python ./server/index.py
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+export PERSISTENCE_PATH=$DIR/../goodnotes.db
+python $DIR/../server/index.py

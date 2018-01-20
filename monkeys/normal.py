@@ -15,7 +15,9 @@ def start():
     launches the normal monkey
     :return:
     """
-    print 'starting normal monkey'
+    print '----------------------------'
+    print 'NORMAL MONKEY is starting'
+    print '----------------------------'
     previous_adds = [0]
     max_seconds = int(os.environ['NORMAL_MONKEY_MAX_DELAY_SECONDS'])
 
@@ -37,13 +39,17 @@ def start():
         data = {'value' : value, 'timestamp': timegm(datetime.utcnow().utctimetuple())}
 
         if add:
-            print 'sending add request'
+            print '--------------------------------------------------------'
+            print 'NORMAL MONKEY sending an add request'
+            print '--------------------------------------------------------'
             requests.post(server_address + url, data=json.dumps(data))
         else:
-            print 'sending delete request'
+            print '--------------------------------------------------------'
+            print 'NORMAL MONKEY sending a delete request'
+            print '--------------------------------------------------------'
             requests.delete(server_address + url, data=json.dumps(data))
 
-        print 'done, going to sleep for {} second(s)'.format(time_to_sleep)
+        print 'Normal Monkey is now going to sleep for {} second(s)'.format(time_to_sleep)
         time.sleep(time_to_sleep)
 
 if __name__ == "__main__":

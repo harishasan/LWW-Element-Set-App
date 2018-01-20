@@ -81,7 +81,9 @@ def start():
     launches client viewer monkey and runs indefinitely.
     :return:
     """
-    print 'client viewer is starting'
+    print '----------------------------'
+    print 'CLIENT VIEWER is starting'
+    print '----------------------------'
     lww_element_set = build_random_set()
     print 'built a random local set'
     # perform the first time fetching
@@ -102,7 +104,9 @@ def start():
     # near real time fetching via pooling after every 2 seconds
     # in order to make it more interactive, use web sockets
     while True:
-        print 'fetching new data from server'
+        print '--------------------------------------------------------'
+        print 'CLIENT VIEWER: fetching new data from server'
+        print '--------------------------------------------------------'
         connect_url = '{}?offset={}'.format(fetch_data_url, fetched_record_count)
         print connect_url
         fetched_record_count += get_and_merge_new_records(connect_url, lww_element_set)

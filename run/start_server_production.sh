@@ -1,4 +1,5 @@
 #!/bin/bash -x
+# this script runs the server app in production environment
 
 PORT=8000
 PERSISTENCE_PATH=/home/ec2-user/goodnotes.db

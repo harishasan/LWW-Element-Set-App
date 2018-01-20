@@ -1,4 +1,5 @@
 #!/bin/bash -x
+# this script runs the client viewer monkey in production environment
 
 SERVER_ADDRESS=http://localhost:8000
 FOREVER_PATH=/home/ec2-user/.nvm/versions/node/v9.4.0/bin/forever

@@ -17,7 +17,9 @@ def start():
     :return:
     """
     max_seconds = int(os.environ['OFFLINE_TO_ONLINE_MONKEY_MAX_DELAY_SECONDS'])
-
+    print '--------------------------------------------------------'
+    print 'OFFLINE TO ONLINE monkey starting'
+    print '--------------------------------------------------------'
     while True:
         time_to_sleep = random.randint(0, max_seconds)
         server_address = os.environ['SERVER_ADDRESS']
@@ -53,9 +55,11 @@ def start():
                 operations.append({'operation': 'remove', 'data': item[1]})
 
         # print json.dumps(operations)
-        print 'posting data on server, {} operations'.format(len(operations))
+        print '--------------------------------------------------------'
+        print 'OFFLINE TO ONLINE MONKEY posting data on server, {} operations'.format(len(operations))
+        print '--------------------------------------------------------'
         requests.post(url, data=json.dumps(operations))
-        print 'done, going to sleep for {} second(s)'.format(time_to_sleep)
+        print 'Offline to Online monkey is now going to sleep for {} second(s)'.format(time_to_sleep)
         time.sleep(time_to_sleep)
 
 if __name__ == "__main__":

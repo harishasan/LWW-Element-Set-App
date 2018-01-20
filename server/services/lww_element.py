@@ -16,7 +16,7 @@ def add(value, timestamp):
     """
     LWW_ELEMENT_SET.add(value, timestamp)
     persistence.record('{},{},{}\n'.format('add', value, timestamp))
-
+    print 'SERVER APP: a new element as has been pushed in the LWW-Element-Set'
 
 def remove(value, timestamp):
     """
@@ -27,6 +27,7 @@ def remove(value, timestamp):
     """
     LWW_ELEMENT_SET.remove(value, timestamp)
     persistence.record('{},{},{}\n'.format('remove', value, timestamp))
+    print 'SERVER APP: an element as has been removed from the LWW-Element-Set'
 
 
 def contains(value):

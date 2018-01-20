@@ -1,4 +1,5 @@
 
+
 Problem statement can be found [here](https://hackmd.io/s/HJkrqjkMG#part-1-lww-element-set-server).
 
 *Notes*
@@ -30,6 +31,18 @@ In order to get near real time results, Client Viewer sends offset of last recor
 
 ### How to Run
 Code is developed in python 2.7. [Requirements.txt](https://github.com/harishasan/LWW-Element-Set-App/blob/master/requirements.txt) contains the required dependencies. Individual running scripts are placed in the [run](https://github.com/harishasan/LWW-Element-Set-App/tree/master/run) directory, a [helper script](https://github.com/harishasan/LWW-Element-Set-App/blob/master/run_everything.sh) can be used to run all modules at once both locally and on production.
+
+In short, follow these steps to run the code in **local environment**:
+ 1. Ensure python 2.7 is installed
+ 2. Open terminal
+ 3. Go to project root directory
+ 4. Run command `pip install requirements.txt`
+ 5. Run command `sh run_everything.sh`
+
+**For production**:
+ 1. Set an environment variable `IS_PRODUCTION` to True
+ 2. Follow steps mentioned for local environment
+
 ### Deployment
 Code is deployed on a single AWS [EC2 instance](http://34.226.152.221/). Please note that server is not serving any html pages so hitting the IP should return a JSON error. Production deployment is using [forever](https://github.com/foreverjs/forever) to automatically restart modules in case of any unexpected problem. All the configurations are passed through environment variables.
 
