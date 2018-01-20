@@ -54,4 +54,5 @@ Few points about this design:
  - Server maintains the live connections against active collaborators to send the changes in real time.
  - Sharding can be evaluated as an option to improve DB performance.
  - Similarly, Read/Write or Master/Slave configuration can also be considered to improve DB performance.
+ - Additionally, an analytics layer can be added for reporting and monitoring purposes.
 
